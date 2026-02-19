@@ -1,4 +1,6 @@
 import { products } from '../data/products-data.js';
+import {cart} from '../cart/cart.js';
+cart.cartLength();
 function renderProductsPage() {
     const productsPageContainer = document.getElementById('products-page');
     console.log(products);
@@ -10,10 +12,19 @@ function renderProductsPage() {
         <img src="${currentProduct.image}" alt="${currentProduct.name}" class="w-full h-48 object-cover rounded-t-lg">
             <h2 class="text-xl font-bold mt-4">${currentProduct.name}</h2>
             <p class="text-gray-600 mt-2">${currentProduct.description}</p>
-            <p class="text-green-500 mt-2 font-bold">$${currentProduct.price.toFixed(2)}</p>
-            <button class="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Add to Cart</button>
+            <p class="text-green-500 mt-2 font-bold">$${currentProduct.toDollar ? currentProduct.toDollar() : (currentProduct.price/100).toFixed(2)}</p>
+            <button class="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 buyButton" id="${currentProduct.id}">Add to Cart</button>
         </div>
      ` ;
     }
 }
 renderProductsPage();
+document.addEventListener('click', function(event) {
+    if (event.target.classList.contains('buyButton')) {
+        const productId = parseInt(event.target.id);
+        const productToAdd = products.find(product => product.id === productId);
+        if (productToAdd) {
+            cart.addToCart(productToAdd);
+        }
+    }
+});
