@@ -34,3 +34,36 @@
   --color-amazon-gray: #f2f2f2;
   --color-amazon-white: #ffffff;
 }
+
+/* Checkout two-column layout */
+.checkout-container {
+  margin-top: 32px;
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  align-items: start;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.checkout-column {
+  background: var(--color-amazon-white);
+  padding: 16px;
+  border-radius: 8px;
+}
+
+.checkout-right {
+  margin-top: 16px;
+  position: sticky;
+  border: 1px solid #e5e7eb;
+  top: 32px;
+}
+
+/* Responsive: stack columns on small screens */
+@media (max-width: 900px) {
+  .checkout-container {
+    grid-template-columns: 1fr;
+  }
+  .checkout-right {
+    position: static;
+  }
+}

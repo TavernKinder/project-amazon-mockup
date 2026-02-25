@@ -62,6 +62,7 @@ export const cart = {
         this.updateCart();
     },
     buyItems() {
+        // In a real application, you would send the cart data to the server here
         this.clearCart();
         alert('Thank you for your purchase!');
     }
