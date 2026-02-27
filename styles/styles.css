@@ -67,3 +67,21 @@
     position: static;
   }
 }
+
+.edit-item{
+  display: flex;
+  flex-direction: column;
+  text-align: end;
+  color: #00E;
+  text-decoration: underline;
+}
+
+.checkout-desc {
+  max-width:400px;
+  white-space: nowrap;   
+}
+
+.truncate {
+  overflow: hidden; 
+  text-overflow: ellipsis;
+}
