@@ -41,7 +41,7 @@ export const cart = {
     cartLength() {
         const cartLengthElement = document.getElementById('cartLength');
         const total = this.items.reduce((sum, it) => sum + (it.amount || 0), 0);
-        if (cartLengthElement) cartLengthElement.textContent = total || 0;
+        if (cartLengthElement) cartLengthElement.textContent = parseInt(total) || 0;
     },
     updateCart() {
         storage.saveCartItems(this.items);
@@ -57,11 +57,32 @@ export const cart = {
         }
         this.updateCart();
     },
+    removeItem(remID) {
+        const idx = this.items.findIndex(product => product.id === remID);
+        if (idx !== -1) {
+            this.items.splice(idx, 1);
+            this.updateCart();
+        }
+    },
+    editItem(editID, amountNew){
+        try{Number.isInteger(amountNew) && amountNew >= 0}
+        catch{
+            return(console.log('Not A valid Integer'))
+        }// There would probrably be another catch detirmening if the value of amountNew is more than the available stock
+        const idx = this.items.find(product => product.id === editID);
+        if (idx !== -1 && amountNew > 0) {
+            idx.amount = amountNew
+            this.updateCart();
+        }else if(amountNew === 0){
+            this.removeItem(editID)
+        }
+    },
     clearCart() {
         this.items = [];
         this.updateCart();
     },
     buyItems() {
+        // In a real application, you would send the cart data and payment data, then you would wait for the purchas to be confirmed
         this.clearCart();
         alert('Thank you for your purchase!');
     }
