@@ -1,5 +1,7 @@
 import {products} from '../data/products-data.js';
 import {cart} from '../cart/cart.js';
+import { renderHeader } from './header.js';
+renderHeader();
 cart.cartLength();
 const main = document.getElementById("checkout-main")
 let fullPrice = 0;
@@ -10,9 +12,9 @@ function renderCartPage() {
     else{
         main.innerHTML = `
         <div class="checkout-container">
-            <section id="cartItems" class="checkout-column checkout-left">
-                <h1 class="text-2xl font-bold mt-8 mb-4">Your Cart</h1>
-                <!-- Cart items will be dynamically added here -->
+            <section class="checkout-column checkout-left">
+                <h1 class="text-2xl font-bold mt-8 mb-4">Your Cart:</h1>
+                <div id='cartItems'><!-- Cart items will be dynamically added here --></div>
             </section>
             <aside id="checkoutBox" class="checkout-column checkout-right">
                 <h2 class="text-xl font-bold">Total: $<span id="totalPrice">0.00</span></h2>
@@ -118,7 +120,6 @@ function fillCartAndCost(){
     const totalPriceElement = document.getElementById('totalPrice');
     if (totalPriceElement) totalPriceElement.textContent = fullPrice.toFixed(2);
 }
-
 renderCartPage();
 
 

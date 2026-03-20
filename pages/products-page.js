@@ -1,5 +1,7 @@
 import { products } from '../data/products-data.js';
 import {cart} from '../cart/cart.js';
+import { renderHeader } from './header.js';
+renderHeader();
 cart.cartLength();
 function renderProductsPage() {
     const productsPageContainer = document.getElementById('products-page');
