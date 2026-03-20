@@ -3,7 +3,7 @@ This is a basic Mockup of Amazon. It includes a home and checkout page. You can 
 
 (How to Run)
 Created using vite tailwind classes. You will need to run this using on a local server with NPM.
-
+ 
 (files and structure)
 has 2 html files for the checkout and products page in the root folder
 vite config files in the root folder
